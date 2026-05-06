@@ -21,7 +21,10 @@ resource "google_secret_manager_secret" "this" {
   secret_id = each.key # Use the name from the list as the secret_id
 
   replication {
-    auto {}
+    user_managed {
+      replicas {
+        location = var.region
+      }
   }
 }
 
